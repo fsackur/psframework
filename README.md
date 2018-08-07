@@ -1,4 +1,4 @@
-# psframework
+# PSFramework
 
 A library that solves commonly-encountered requirements.
 
@@ -26,9 +26,9 @@ Functionality covers four main areas:
 - Background tasks
 - Module development and increasing usability of developed modules
 
-If even one of these is a function that your team has to perform, then PSFramework can potentially save you a large number of hours of effort and increase the quality of your application.
+These areas are a subset of what PSFramework offers. PSFramework ha a broad scope. But if even one of these is a function that your team has to perform, then PSFramework can potentially save you a large number of hours of effort, while also increasing the quality of your applications.
 
-Get back to what you do best: delivering business value!
+**Get back to what you do best: delivering business value!**
 
 ## Logging
 
