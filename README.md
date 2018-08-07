@@ -1,44 +1,59 @@
 # psframework
-A module that provides tools for other modules and scripts
 
-# Objective
-Welcome to the psframework project.
-The design goal is to create a framework specific to powershell scripting in general. It provides infrastructure for generic scripting tasks, such as:
- - configuration management
- - logging
- - optimizing the user experience
- - improving manageability of PowerShell
+A library that solves commonly-encountered requirements.
 
- # Getting Started
- ## Installation
- In order to get started with the latest production build, simply run this in an elevated console:
- ```powershell
- Install-Module PSFramework
- ```
- This will install the module on your system, ready for use
- 
- ## A quick peek into logging
- After installing the PSFramework, simply replace all instances of ...
- ```powershell
- Write-Verbose "<whatever>"
- ```
- ... with ...
- ```powershell
- Write-PSFMessage "<Whatever>"
- ```
- It will still write to verbose, but also ...
-  - Write to a log in your appdata folder
-  - Automatically rotate old or too large logs
-  
-## More guidance
-All of the upcoming documentation will also be hosted at the [official PSFramework website](http://psframework.org), existing documentation shall be copied to also be available there.
+# The problem
 
-The PSFramework project has a related slack community, where everybody is free to join, ask questions or discuss practices. For a free invite, check our [Contact](http://psframework.org/general/contact.html) page
+There are a number of requirements that most software teams encounter and must solve themselves - for example, logging.
 
-The PSFramework comes with lots of internal documentation.
-All functions ship with help and examples and there are quite a few concept help articles:
-```powershell
-Get-Help about_psf*
-```
-(Note: Some of them are not quite done yet)
-Finally, I also like to [write in my blog](http://allthingspowershell.blogspot.de) about the PSFramework and all my other projects.
+When every team solves these problems independently, they must:
+
+- spend development time creating boilerplate code
+- spend maintenance time supporting this code
+
+# The solution
+
+PSFramework is an _actively-maintained_ library of solutions to these common problems, engineered to be _simple-to-use_ but with great flexibility when needed.
+
+PSFramework is engineered for performance.
+
+PSFramework is engineered for reliability, and is thoroughly unit-tested and soak-tested.
+
+Functionality covers four main areas:
+
+- Logging, and handling verbose and debug messages
+- Storing and retrieving per-module configuration
+- Background tasks
+- Module development and increasing usability of developed modules
+
+If even one of these is a function that your team has to perform, then PSFramework can potentially save you a large number of hours of effort and increase the quality of your application.
+
+Get back to what you do best: delivering business value!
+
+## Logging
+
+- Replace all `Write-Log`, `Write-Verbose`, `Write-Debug` and `Write-Host` messages with `Write-PSFMessage`.
+
+All messages are logged by default. Logging is asynchronous, improving performance. Logging handles all potential issues such as dealing with a filesystem.
+
+You can easily set message display dynamically, so that end-users have a curated error experience but developers get enhanced exception functionality.
+
+## Per-module configuration
+
+- Replace all module registry storage or JSON / XML /YAML storage with `Get-` and `Set-PSFConfig`.
+
+Configuration is handled per-module. You do not need to think about where to store configuration or how to validate it. You can optionally set validation per configuration item. _It just works._
+
+## Background tasks
+
+- Replace all Runspace, Job and Event code with `Register-PSFTaskEngineTask`.
+
+PSFramework tasks are managed by the PSFramework task engine. This performs scheduling and clean-up. Tasks can be run once, or on a schedule. The task engine handles getting results back to you.
+
+Tasks scheduled with PSFramework are easy to debug with `Write-PSFMessage`.
+
+## Development and usability
+
+- Replace all parameter validation and tab completion code with `Register-PSFTeppArgumentCompleter` and the custom parameter attributes.
+
+(WIP)
